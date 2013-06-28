@@ -410,7 +410,7 @@ static VALUE rb_mysql_result_each(int argc, VALUE * argv, VALUE self) {
   ID db_timezone, app_timezone, dbTz, appTz;
   mysql2_result_wrapper * wrapper;
   unsigned long i;
-  int symbolizeKeys = 0, asArray = 0, castBool = 0, castDate = 0, cacheRows = 1, cast = 1, streaming = 0;
+  int symbolizeKeys = 0, asArray = 0, castBool = 0, castDate = 1, cacheRows = 1, cast = 1, streaming = 0;
   MYSQL_FIELD * fields = NULL;
 
   GetMysql2Result(self, wrapper);
