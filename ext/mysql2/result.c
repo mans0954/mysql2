@@ -292,7 +292,12 @@ static VALUE rb_mysql_result_fetch_row(VALUE self, ID db_timezone, ID app_timezo
             val = Qnil;
           } else {
             if (month < 1 || day < 1) {
-              rb_raise(cMysql2Error, "Invalid date 00: %s", row[i]);
+		switch(castDate) {
+		case 0:
+	              rb_raise(cMysql2Error, "Invalid date 00: %s", row[i]);
+		case 1:
+			val = Qnil;
+		}
               val = Qnil;
             } else {
               if (seconds < MYSQL2_MIN_TIME || seconds > MYSQL2_MAX_TIME) { /* use DateTime for larger date range, does not support microseconds */
